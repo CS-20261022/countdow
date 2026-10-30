@@ -9,11 +9,11 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", "Hiragino Sans", sans-serif;
     }
     body {
-      background: #f7fafc;
-      color: #2d3748;
+      background: #f8f6f0; /* 溫潤燕麥米底色 */
+      color: #4a443f;     /* 炭灰微偏暖字體 */
       display: flex;
       justify-content: center;
       padding: 40px 16px;
@@ -23,273 +23,53 @@
       background: #ffffff;
       width: 100%;
       max-width: 480px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-      padding: 28px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(60, 54, 51, 0.05);
+      border: 1px solid #ebe5dc;
+      padding: 32px 26px;
     }
     h1 {
-      font-size: 1.4rem;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #1a202c;
-    }
-    .result-card {
-      background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
-      border-radius: 12px;
-      padding: 20px;
+      font-size: 1.3rem;
+      font-weight: 600;
       text-align: center;
       margin-bottom: 24px;
-      border: 1px solid #bee3f8;
+      color: #3c3633;
+      letter-spacing: 0.04em;
+    }
+    /* 核心倒數卡片 - 無印風米色系 */
+    .result-card {
+      background: #f7f4ee;
+      border-radius: 8px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 24px;
+      border: 1px solid #e7e0d5;
     }
     .range-label {
-      font-size: 0.85rem;
-      color: #4a5568;
-      margin-bottom: 6px;
+      font-size: 0.82rem;
+      color: #7d756d;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
     }
     .days-count {
-      font-size: 3rem;
-      font-weight: 800;
-      color: #2b6cb0;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #3c3633;
       line-height: 1.1;
+      font-variant-numeric: tabular-nums;
     }
     .days-unit {
-      font-size: 1rem;
-      font-weight: normal;
-      color: #4a5568;
-      margin-left: 4px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #7d756d;
+      margin-left: 6px;
     }
     .breakdown {
       font-size: 0.8rem;
-      color: #718096;
-      margin-top: 8px;
-    }
-    .section-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #4a5568;
-    }
-    .input-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    input[type="date"] {
-      flex: 1;
-      padding: 10px 12px;
-      border: 1px solid #cbd5e0;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      outline: none;
-    }
-    button {
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 16px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-    .btn-add {
-      background: #3182ce;
-      color: #fff;
-    }
-    .btn-add:hover {
-      background: #2b6cb0;
-    }
-    .btn-clear {
-      background: #fed7d7;
-      color: #9b2c2c;
-      width: 100%;
+      color: #8c837b;
       margin-top: 10px;
     }
-    .btn-clear:hover {
-      background: #feb2b2;
-    }
-    .holiday-list {
-      list-style: none;
-      max-height: 180px;
-      overflow-y: auto;
-      border: 1px solid #edf2f7;
-      border-radius: 8px;
-      padding: 6px 10px;
-      margin-bottom: 8px;
-      background: #fafafa;
-    }
-    .holiday-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 4px;
-      font-size: 0.88rem;
-      border-bottom: 1px dashed #e2e8f0;
-    }
-    .holiday-item:last-child {
-      border-bottom: none;
-    }
-    .btn-del {
-      background: transparent;
-      color: #e53e3e;
-      padding: 2px 6px;
-      font-size: 0.8rem;
-    }
-    .empty-tip {
-      font-size: 0.85rem;
-      color: #a0aec0;
-      text-align: center;
-      padding: 14px 0;
-    }
-  </style>
-</head>
-<body>
-
-<div class="container">
-  <h1>年度剩餘上班日倒數</h1>
-
-  <div class="result-card">
-    <div class="range-label" id="date-range-text">計算區間載入中...</div>
-    <div class="days-count" id="workday-count">--<span class="days-unit">天</span></div>
-    <div class="breakdown" id="breakdown-text">週末與休假已自動扣除</div>
-  </div>
-
-  <div class="section-title">自訂排休日（平日請假/國定假日）</div>
-  
-  <div class="input-row">
-    <input type="date" id="holiday-input">
-    <button class="btn-add" id="btn-add">新增</button>
-  </div>
-
-  <ul class="holiday-list" id="holiday-list"></ul>
-
-  <button class="btn-clear" id="btn-clear">一鍵清空所有排休日</button>
-</div>
-
-<script>
-  const STORAGE_KEY = 'custom_holidays_list';
-
-  // 取得基準日期（起始日為明天，結束日為當年 12/31）
-  const today = new Date();
-  const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-  const endDate = new Date(today.getFullYear(), 11, 31); // 11 代表 12 月
-
-  function formatDate(d) {
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
-  }
-
-  // 設定輸入框的可選範圍
-  const holidayInput = document.getElementById('holiday-input');
-  holidayInput.min = formatDate(startDate);
-  holidayInput.max = formatDate(endDate);
-  holidayInput.value = formatDate(startDate);
-
-  // 讀取/儲存自訂休假
-  function getStoredHolidays() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch {
-      return [];
-    }
-  }
-
-  function saveStoredHolidays(list) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-  }
-
-  // 核心天數計算
-  function calculate() {
-    const holidays = getStoredHolidays();
-    const holidaySet = new Set(holidays);
-
-    let totalWeekdays = 0;
-    let customHolidayDeducted = 0;
-
-    let curr = new Date(startDate);
-    while (curr <= endDate) {
-      const dayOfWeek = curr.getDay();
-      // 0 為週日，6 為週六
-      const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
-      const dateStr = formatDate(curr);
-
-      if (!isWeekend) {
-        if (holidaySet.has(dateStr)) {
-          customHolidayDeducted++;
-        } else {
-          totalWeekdays++;
-        }
-      }
-      curr.setDate(curr.getDate() + 1);
-    }
-
-    // 更新介面
-    document.getElementById('date-range-text').innerText = 
-      `計算區間：${formatDate(startDate)} ～ ${formatDate(endDate)}`;
-    document.getElementById('workday-count').innerHTML = 
-      `${totalWeekdays}<span class="days-unit">天</span>`;
-    document.getElementById('breakdown-text').innerText = 
-      `已扣除所有週末與 ${customHolidayDeducted} 天平日排休`;
-
-    renderHolidayList(holidays);
-  }
-
-  function renderHolidayList(holidays) {
-    const listEl = document.getElementById('holiday-list');
-    listEl.innerHTML = '';
-
-    if (holidays.length === 0) {
-      listEl.innerHTML = '<li class="empty-tip">尚未加入任何自訂排休日</li>';
-      return;
-    }
-
-    holidays.sort().forEach(dateStr => {
-      const li = document.createElement('li');
-      li.className = 'holiday-item';
-      
-      const d = new Date(dateStr + 'T00:00:00');
-      const dayOfWeekStr = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
-
-      li.innerHTML = `
-        <span>${dateStr} (週${dayOfWeekStr})</span>
-        <button class="btn-del" onclick="deleteHoliday('${dateStr}')">刪除</button>
-      `;
-      listEl.appendChild(li);
-    });
-  }
-
-  // 加入排休日
-  document.getElementById('btn-add').addEventListener('click', () => {
-    const val = holidayInput.value;
-    if (!val) return;
-
-    let holidays = getStoredHolidays();
-    if (!holidays.includes(val)) {
-      holidays.push(val);
-      saveStoredHolidays(holidays);
-      calculate();
-    }
-  });
-
-  // 刪除單筆
-  window.deleteHoliday = function(dateStr) {
-    let holidays = getStoredHolidays();
-    holidays = holidays.filter(item => item !== dateStr);
-    saveStoredHolidays(holidays);
-    calculate();
-  };
-
-  // 一鍵清空
-  document.getElementById('btn-clear').addEventListener('click', () => {
-    if (confirm('確定要清空所有已輸入的排休日嗎？')) {
-      localStorage.removeItem(STORAGE_KEY);
-      calculate();
-    }
-  });
-
-  // 初次執行計算
-  calculate();
-</script>
-</body>
-</html>
+    .section-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 12
