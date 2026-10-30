@@ -30,7 +30,7 @@
       position: relative;
     }
 
-    /* 頂部手繪植物微裝飾 */
+    /* 頂部手繪小植物線條 */
     .top-deco {
       display: flex;
       justify-content: center;
@@ -134,33 +134,30 @@
       gap: 5px;
     }
 
-    /* 遞減進度條 */
-    .progress-section {
+    /* 精準時段溫暖小語區塊 */
+    .quote-box {
       margin-top: 18px;
       padding-top: 14px;
       border-top: 1px dashed #e2dbcf;
-    }
-    .progress-track {
-      width: 100%;
-      height: 6px;
-      background-color: #e5ded3;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 100%;
-      background-color: #5c544e;
-      border-radius: 3px;
-      transition: width 0.4s ease;
-    }
-    .progress-meta {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.76rem;
-      color: #8c837b;
-      letter-spacing: 0.02em;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .quote-box svg {
+      width: 14px;
+      height: 14px;
+      stroke: #a89f96;
+      stroke-width: 1.5;
+      fill: none;
+      flex-shrink: 0;
+    }
+    .quote-text {
+      font-size: 0.82rem;
+      color: #6e655f;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+      font-style: normal;
     }
 
     .section-title {
@@ -333,7 +330,6 @@
 <body>
 
 <div class="container">
-  <!-- 頂部手繪小植物線條 -->
   <div class="top-deco">
     <svg viewBox="0 0 24 24">
       <path d="M12 21V10M12 10C12 7 9 4 5 5C5 9 8 11 12 10ZM12 14C14 12 18 12 19 15C16 17 13 16 12 14Z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -341,7 +337,6 @@
   </div>
 
   <h1>
-    <!-- 手繪日曆小圖 -->
     <svg viewBox="0 0 24 24">
       <rect x="3" y="4" width="18" height="17" rx="3" stroke-linecap="round"/>
       <path d="M3 9H21M8 2V5M16 2V5" stroke-linecap="round"/>
@@ -354,7 +349,6 @@
 
   <div class="result-card">
     <div class="range-label" id="date-range-text">
-      <!-- 手繪小時鐘 -->
       <svg viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9"/>
         <path d="M12 7V12L15 14" stroke-linecap="round"/>
@@ -365,7 +359,6 @@
     <div class="count-wrapper">
       <div class="days-count" id="workday-count">--</div>
       <span class="days-unit">天</span>
-      <!-- 手繪星星小閃光 -->
       <svg class="sparkle-icon" viewBox="0 0 24 24">
         <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -373,20 +366,17 @@
 
     <div class="breakdown" id="breakdown-text">週末與休假已自動扣除</div>
 
-    <!-- 遞減式極簡進度條 -->
-    <div class="progress-section">
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-      <div class="progress-meta">
-        <span>年度剩餘工時比例</span>
-        <span id="progress-percent">0%</span>
-      </div>
+    <!-- 精準時段溫暖小語 -->
+    <div class="quote-box">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 21C3 21 4 18 4 14C4 9.5 7.5 6 12 6C16.5 6 20 9.5 20 14C20 18 21 21 21 21" stroke-linecap="round"/>
+        <path d="M9 13H15M9 17H13" stroke-linecap="round"/>
+      </svg>
+      <div class="quote-text" id="quote-display">今天也辛苦了，放慢腳步喝杯溫熱的茶吧。</div>
     </div>
   </div>
 
   <div class="section-title">
-    <!-- 手繪便籤/日程小圖 -->
     <svg viewBox="0 0 24 24">
       <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" stroke-linecap="round"/>
       <path d="M7 7H17M7 11H14M7 15H11" stroke-linecap="round"/>
@@ -418,7 +408,6 @@
       <span>陪你一起數著日子前進</span>
     </div>
     <a href="https://buymeacoffee.com/你的用戶名稱" target="_blank" rel="noopener noreferrer" class="coffee-btn">
-      <!-- 手繪細線熱咖啡杯 -->
       <svg viewBox="0 0 24 24">
         <path d="M4 8H17C18.1 8 19 8.9 19 10V11C19 12.1 18.1 13 17 13H4V8Z" stroke-linecap="round"/>
         <path d="M4 8V16C4 17.7 5.3 19 7 19H14C15.7 19 17 17.7 17 16V8" stroke-linecap="round"/>
@@ -432,6 +421,97 @@
 
 <script>
   const STORAGE_KEY = 'custom_holidays_list';
+
+  // 星期 × 時段 二維溫暖生活語錄庫
+  const contextualQuotes = {
+    // 週一：溫和收假與起步
+    1: {
+      morning: [
+        "週一早晨，慢慢開機就好，給自己泡一杯溫熱的咖啡吧。",
+        "新的一週輕輕開始，不用急著跑，一步一步走就很穩。"
+      ],
+      afternoon: [
+        "週一午後最容易犯困，起來喝口溫水、動動肩頸吧。",
+        "前半天已經順利度過，下午按照自己的步調前進。"
+      ],
+      evening: [
+        "平安撐過每週最難熬的週一，今晚好好吃頓飯慰勞自己。",
+        "最需要勇氣的第一天結束了，今晚早點休息吧。"
+      ]
+    },
+
+    // 週三：小週末喘息與平衡
+    3: {
+      morning: [
+        "不知不覺來到週三早晨，本週的峰頂今天就要跨過了！",
+        "週三早安，今天適合帶一份喜歡的早餐給自己打氣。"
+      ],
+      afternoon: [
+        "小週末午後，為撐過前半週的自己拍拍肩，吃點小點心吧。",
+        "一週最重要的轉折點已過，接下來的步伐會越來越輕盈。"
+      ],
+      evening: [
+        "週三夜晚，留點時間給自己喜歡的書、音樂或熱茶吧。",
+        "小週末收工！今晚很適合稍微放鬆一下，不必把弦繃得太緊。"
+      ]
+    },
+
+    // 週五：放假前夕期待與收尾
+    5: {
+      morning: [
+        "週五早安！最後一天工作天，空氣彷彿都帶著假期的香氣。",
+        "準備迎接週末，今天帶著愉快的心情把待辦事項收尾吧。"
+      ],
+      afternoon: [
+        "週五午後，再堅持一下，今晚的自由時光正在前方等著你！",
+        "整理桌面與收尾郵件，週末倒數已經進入尾聲囉。"
+      ],
+      evening: [
+        "辛苦了一整週！今晚把所有工作清單放下，週末正式開始 🎉",
+        "下班快樂！今晚屬於完全自由的自己，盡情享受假期吧。"
+      ]
+    },
+
+    // 週二、週四與週末：平穩日常
+    default: {
+      morning: [
+        "早安，深呼吸一次，過好每一個今天，明天就會更溫柔。",
+        "清晨的陽光很舒服，今天也用穩健的步伐前進。"
+      ],
+      afternoon: [
+        "午後時光，累了就抬頭看看窗外，給自己五分鐘的放空。",
+        "下午的專注時段，一步一步完成手邊的事項碎片。"
+      ],
+      evening: [
+        "夕陽西下，把今天交給努力，把夜晚溫柔留給自己。",
+        "今天也辛苦了，收拾好心情，準備迎接平靜的夜晚。"
+      ]
+    }
+  };
+
+  // 取得當前時段（早晨、午後、傍晚/夜間）
+  function getTimeSlot() {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      return 'morning';
+    } else if (hour >= 12 && hour < 17) {
+      return 'afternoon';
+    } else {
+      return 'evening';
+    }
+  }
+
+  // 依當前星期與時段隨機選取問候語
+  function setRandomQuote() {
+    const dayOfWeek = today.getDay();
+    const timeSlot = getTimeSlot();
+
+    const dayQuotes = contextualQuotes[dayOfWeek] || contextualQuotes.default;
+    const quotesList = dayQuotes[timeSlot] || dayQuotes.afternoon;
+
+    const randomIndex = Math.floor(Math.random() * quotesList.length);
+    document.getElementById('quote-display').innerText = quotesList[randomIndex];
+  }
 
   const today = new Date();
   const year = today.getFullYear();
@@ -466,18 +546,6 @@
     const holidays = getStoredHolidays();
     const holidaySet = new Set(holidays);
 
-    // 1. 計算自明日起至 12/31 基準平日總天數（不含排休）
-    let totalPeriodWeekdays = 0;
-    let baseCurr = new Date(startDate);
-    while (baseCurr <= endDate) {
-      const d = baseCurr.getDay();
-      if (d !== 0 && d !== 6) {
-        totalPeriodWeekdays++;
-      }
-      baseCurr.setDate(baseCurr.getDate() + 1);
-    }
-
-    // 2. 計算扣除排休後的實際剩餘上班天數
     let remainingWorkdays = 0;
     let customHolidayDeducted = 0;
 
@@ -497,7 +565,6 @@
       curr.setDate(curr.getDate() + 1);
     }
 
-    // 更新介面
     document.getElementById('date-range-text').innerHTML = `
       <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#8c837b;stroke-width:1.6;fill:none;">
         <circle cx="12" cy="12" r="9"/>
@@ -509,14 +576,6 @@
     document.getElementById('workday-count').innerText = remainingWorkdays;
     document.getElementById('breakdown-text').innerText = 
       `已扣除週末與 ${customHolidayDeducted} 天平日排休`;
-
-    // 3. 遞減式進度條更新
-    const percent = totalPeriodWeekdays > 0 
-      ? Math.min(100, Math.max(0, (remainingWorkdays / totalPeriodWeekdays) * 100)).toFixed(1)
-      : 0;
-
-    document.getElementById('progress-fill').style.width = `${percent}%`;
-    document.getElementById('progress-percent').innerText = `${percent}%`;
 
     renderHolidayList(holidays);
   }
@@ -571,6 +630,8 @@
     }
   });
 
+  // 初次執行問候語選取與天數計算
+  setRandomQuote();
   calculate();
 </script>
 </body>
