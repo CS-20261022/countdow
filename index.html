@@ -12,8 +12,8 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", "Hiragino Sans", sans-serif;
     }
     body {
-      background: #f8f6f0; /* 溫潤燕麥米底色 */
-      color: #4a443f;     /* 炭灰微偏暖字體 */
+      background: #f8f6f0;
+      color: #4a443f;
       display: flex;
       justify-content: center;
       padding: 40px 16px;
@@ -23,39 +23,86 @@
       background: #ffffff;
       width: 100%;
       max-width: 480px;
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 4px 20px rgba(60, 54, 51, 0.05);
       border: 1px solid #ebe5dc;
-      padding: 32px 26px;
+      padding: 34px 26px 28px;
+      position: relative;
     }
+
+    /* 頂部手繪植物微裝飾 */
+    .top-deco {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .top-deco svg {
+      width: 24px;
+      height: 24px;
+      stroke: #a89f96;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
     h1 {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 600;
       text-align: center;
       margin-bottom: 24px;
       color: #3c3633;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    /* 核心倒數卡片 - 無印風米色系 */
+    h1 svg {
+      width: 20px;
+      height: 20px;
+      stroke: #7d756d;
+      stroke-width: 1.6;
+      fill: none;
+    }
+
+    /* 核心倒數卡片 */
     .result-card {
       background: #f7f4ee;
-      border-radius: 8px;
-      padding: 24px 20px;
+      border-radius: 10px;
+      padding: 24px 20px 20px;
       text-align: center;
       margin-bottom: 24px;
       border: 1px solid #e7e0d5;
+      position: relative;
     }
     .range-label {
       font-size: 0.82rem;
       color: #7d756d;
-      letter-spacing: 0.02em;
-      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .range-label svg {
+      width: 14px;
+      height: 14px;
+      stroke: #8c837b;
+      stroke-width: 1.6;
+      fill: none;
+    }
+
+    .count-wrapper {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      position: relative;
     }
     .days-count {
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       font-weight: 700;
       color: #3c3633;
-      line-height: 1.1;
+      line-height: 1;
       font-variant-numeric: tabular-nums;
     }
     .days-unit {
@@ -64,12 +111,467 @@
       color: #7d756d;
       margin-left: 6px;
     }
+
+    /* 日系閃光裝飾 */
+    .sparkle-icon {
+      position: absolute;
+      top: -6px;
+      right: -18px;
+      width: 16px;
+      height: 16px;
+      stroke: #b5aba1;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
     .breakdown {
       font-size: 0.8rem;
       color: #8c837b;
-      margin-top: 10px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
     }
+
+    /* 遞減進度條 */
+    .progress-section {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed #e2dbcf;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background-color: #e5ded3;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background-color: #5c544e;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: #8c837b;
+      letter-spacing: 0.02em;
+    }
+
     .section-title {
       font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 12
+      margin-bottom: 12px;
+      color: #5c544e;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-title svg {
+      width: 16px;
+      height: 16px;
+      stroke: #7d756d;
+      stroke-width: 1.6;
+      fill: none;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input[type="date"] {
+      flex: 1;
+      padding: 9px 12px;
+      background: #faf9f6;
+      border: 1px solid #ddd6cb;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #4a443f;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input[type="date"]:focus {
+      border-color: #8c837b;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-add {
+      background: #5c544e;
+      color: #ffffff;
+    }
+    .btn-add:hover {
+      background: #4a443f;
+    }
+    .btn-clear {
+      background: #faf8f5;
+      color: #8c837b;
+      border: 1px solid #e7e0d5;
+      width: 100%;
+      margin-top: 10px;
+      padding: 8px 12px;
+    }
+    .btn-clear:hover {
+      background: #f0eae1;
+      color: #5c544e;
+    }
+    .btn-clear svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      fill: none;
+    }
+
+    .holiday-list {
+      list-style: none;
+      max-height: 180px;
+      overflow-y: auto;
+      border: 1px solid #ebe5dc;
+      border-radius: 6px;
+      padding: 6px 12px;
+      margin-bottom: 8px;
+      background: #faf9f6;
+    }
+    .holiday-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      border-bottom: 1px dashed #e2dbcf;
+      color: #5c544e;
+    }
+    .holiday-item:last-child {
+      border-bottom: none;
+    }
+    .btn-del {
+      background: transparent;
+      color: #a39990;
+      padding: 2px 6px;
+      font-size: 0.78rem;
+      border-radius: 4px;
+    }
+    .btn-del:hover {
+      color: #c53030;
+      background: #faeae8;
+    }
+    .empty-tip {
+      font-size: 0.82rem;
+      color: #a89f96;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    /* 日系極簡 - 喝咖啡按鈕 */
+    .support-section {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid #ebe5dc;
+      text-align: center;
+    }
+    .support-tip {
+      font-size: 0.78rem;
+      color: #9a9087;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .coffee-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #ffffff;
+      color: #4a443f;
+      border: 1px solid #ddd6cb;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      padding: 9px 18px;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(60, 54, 51, 0.03);
+      transition: all 0.25s ease;
+    }
+    .coffee-btn:hover {
+      background-color: #4a443f;
+      color: #ffffff;
+      border-color: #4a443f;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(60, 54, 51, 0.1);
+    }
+    .coffee-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- 頂部手繪小植物線條 -->
+  <div class="top-deco">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 21V10M12 10C12 7 9 4 5 5C5 9 8 11 12 10ZM12 14C14 12 18 12 19 15C16 17 13 16 12 14Z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <h1>
+    <!-- 手繪日曆小圖 -->
+    <svg viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="17" rx="3" stroke-linecap="round"/>
+      <path d="M3 9H21M8 2V5M16 2V5" stroke-linecap="round"/>
+      <circle cx="8" cy="14" r="1" fill="#7d756d"/>
+      <circle cx="12" cy="14" r="1" fill="#7d756d"/>
+      <circle cx="16" cy="14" r="1" fill="#7d756d"/>
+    </svg>
+    年度上班日倒數
+  </h1>
+
+  <div class="result-card">
+    <div class="range-label" id="date-range-text">
+      <!-- 手繪小時鐘 -->
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7V12L15 14" stroke-linecap="round"/>
+      </svg>
+      <span>計算區間載入中...</span>
+    </div>
+
+    <div class="count-wrapper">
+      <div class="days-count" id="workday-count">--</div>
+      <span class="days-unit">天</span>
+      <!-- 手繪星星小閃光 -->
+      <svg class="sparkle-icon" viewBox="0 0 24 24">
+        <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="breakdown" id="breakdown-text">週末與休假已自動扣除</div>
+
+    <!-- 遞減式極簡進度條 -->
+    <div class="progress-section">
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-meta">
+        <span>年度剩餘工時比例</span>
+        <span id="progress-percent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <!-- 手繪便籤/日程小圖 -->
+    <svg viewBox="0 0 24 24">
+      <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" stroke-linecap="round"/>
+      <path d="M7 7H17M7 11H14M7 15H11" stroke-linecap="round"/>
+    </svg>
+    自訂排休日（平日請假／國定假日）
+  </div>
+  
+  <div class="input-row">
+    <input type="date" id="holiday-input">
+    <button class="btn-add" id="btn-add">
+      <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+        <path d="M12 5V19M5 12H19" stroke-linecap="round"/>
+      </svg>
+      新增
+    </button>
+  </div>
+
+  <ul class="holiday-list" id="holiday-list"></ul>
+
+  <button class="btn-clear" id="btn-clear">
+    <svg viewBox="0 0 24 24">
+      <path d="M19 7L18.1 19C18.05 19.55 17.6 20 17.05 20H6.95C6.4 20 5.95 19.55 5.9 19L5 7M10 11V16M14 11V16M4 7H20M9 7V4C9 3.45 9.45 3 10 3H14C14.55 3 15 3.45 15 4V7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    清空所有排休日
+  </button>
+
+  <div class="support-section">
+    <div class="support-tip">
+      <span>陪你一起數著日子前進</span>
+    </div>
+    <a href="https://buymeacoffee.com/你的用戶名稱" target="_blank" rel="noopener noreferrer" class="coffee-btn">
+      <!-- 手繪細線熱咖啡杯 -->
+      <svg viewBox="0 0 24 24">
+        <path d="M4 8H17C18.1 8 19 8.9 19 10V11C19 12.1 18.1 13 17 13H4V8Z" stroke-linecap="round"/>
+        <path d="M4 8V16C4 17.7 5.3 19 7 19H14C15.7 19 17 17.7 17 16V8" stroke-linecap="round"/>
+        <path d="M7 2C7 3.5 6 4 6 5.5M11 2C11 3.5 10 4 10 5.5M15 2C15 3.5 14 4 14 5.5" stroke-linecap="round"/>
+        <path d="M2 21H20" stroke-linecap="round"/>
+      </svg>
+      <span>請作者喝杯咖啡</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'custom_holidays_list';
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const startDate = new Date(year, today.getMonth(), today.getDate() + 1);
+  const endDate = new Date(year, 11, 31);
+
+  function formatDate(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  const holidayInput = document.getElementById('holiday-input');
+  holidayInput.min = formatDate(startDate);
+  holidayInput.max = formatDate(endDate);
+  holidayInput.value = formatDate(startDate);
+
+  function getStoredHolidays() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveStoredHolidays(list) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+
+  function calculate() {
+    const holidays = getStoredHolidays();
+    const holidaySet = new Set(holidays);
+
+    // 1. 計算自明日起至 12/31 基準平日總天數（不含排休）
+    let totalPeriodWeekdays = 0;
+    let baseCurr = new Date(startDate);
+    while (baseCurr <= endDate) {
+      const d = baseCurr.getDay();
+      if (d !== 0 && d !== 6) {
+        totalPeriodWeekdays++;
+      }
+      baseCurr.setDate(baseCurr.getDate() + 1);
+    }
+
+    // 2. 計算扣除排休後的實際剩餘上班天數
+    let remainingWorkdays = 0;
+    let customHolidayDeducted = 0;
+
+    let curr = new Date(startDate);
+    while (curr <= endDate) {
+      const dayOfWeek = curr.getDay();
+      const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+      const dateStr = formatDate(curr);
+
+      if (!isWeekend) {
+        if (holidaySet.has(dateStr)) {
+          customHolidayDeducted++;
+        } else {
+          remainingWorkdays++;
+        }
+      }
+      curr.setDate(curr.getDate() + 1);
+    }
+
+    // 更新介面
+    document.getElementById('date-range-text').innerHTML = `
+      <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#8c837b;stroke-width:1.6;fill:none;">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7V12L15 14" stroke-linecap="round"/>
+      </svg>
+      <span>計算區間：${formatDate(startDate)} ～ ${formatDate(endDate)}</span>
+    `;
+
+    document.getElementById('workday-count').innerText = remainingWorkdays;
+    document.getElementById('breakdown-text').innerText = 
+      `已扣除週末與 ${customHolidayDeducted} 天平日排休`;
+
+    // 3. 遞減式進度條更新
+    const percent = totalPeriodWeekdays > 0 
+      ? Math.min(100, Math.max(0, (remainingWorkdays / totalPeriodWeekdays) * 100)).toFixed(1)
+      : 0;
+
+    document.getElementById('progress-fill').style.width = `${percent}%`;
+    document.getElementById('progress-percent').innerText = `${percent}%`;
+
+    renderHolidayList(holidays);
+  }
+
+  function renderHolidayList(holidays) {
+    const listEl = document.getElementById('holiday-list');
+    listEl.innerHTML = '';
+
+    if (holidays.length === 0) {
+      listEl.innerHTML = '<li class="empty-tip">尚未加入任何自訂排休日</li>';
+      return;
+    }
+
+    holidays.sort().forEach(dateStr => {
+      const li = document.createElement('li');
+      li.className = 'holiday-item';
+      
+      const d = new Date(dateStr + 'T00:00:00');
+      const dayOfWeekStr = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
+
+      li.innerHTML = `
+        <span>${dateStr} (週${dayOfWeekStr})</span>
+        <button class="btn-del" onclick="deleteHoliday('${dateStr}')">刪除</button>
+      `;
+      listEl.appendChild(li);
+    });
+  }
+
+  document.getElementById('btn-add').addEventListener('click', () => {
+    const val = holidayInput.value;
+    if (!val) return;
+
+    let holidays = getStoredHolidays();
+    if (!holidays.includes(val)) {
+      holidays.push(val);
+      saveStoredHolidays(holidays);
+      calculate();
+    }
+  });
+
+  window.deleteHoliday = function(dateStr) {
+    let holidays = getStoredHolidays();
+    holidays = holidays.filter(item => item !== dateStr);
+    saveStoredHolidays(holidays);
+    calculate();
+  };
+
+  document.getElementById('btn-clear').addEventListener('click', () => {
+    if (confirm('確定要清空所有已輸入的排休日嗎？')) {
+      localStorage.removeItem(STORAGE_KEY);
+      calculate();
+    }
+  });
+
+  calculate();
+</script>
+</body>
+</html>
